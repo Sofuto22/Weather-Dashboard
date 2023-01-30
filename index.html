@@ -41,8 +41,36 @@
             <div class=" col-sm-3">
                 <h4 class="searchCityHeader">Search a City</h4>
                 <form class="input-group mb-3">
-                    <input type="text" class="inputValue" id="inputValue"
+                    <input type="text" class="inputValue" id="inputValue" placeholder="Enter City"/>
+                    <div class="input-group-append">
+                        <button class="searchBtn btn btn-primary" id="searchButton" type="button">
+                            <span class="oi oi-magnifying-glass"></span>
+                        </button>
+                    </div>
                 </form>
+                <button class="btn btn-primary mb-3" type="button" id="clearHistory">Clear</button>
+                <form id="recent"></form>
+            </ul>
+            </div>
+        </div>
+        <div class="col-sm-9 display">
+            <div class="current-weather hide card">
+                <h2 class="city-date-icon"></h2>
+                <p class="tempurature"></p>
+                <p class="humidity"></p>
+                <p class="wind"></p>
+                <p class="uv">
+                    UV:
+                    <i class="uvValue"></i>
+                </p>
+            </div>
+            <div class="d-flex five-day-forecast">
+                <h3 class="fiveDay"></h3>
+                <div id="cards" class="col-12 d-flex"></div>
             </div>
         </div>   
     </main>
+
+    <script src="assets/script.js"></script>
+    </body>
+    </html>
