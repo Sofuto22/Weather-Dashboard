@@ -11,3 +11,23 @@ var recentSearch = JSON.parse(localStorage.getItem("recents")|| "[]");
 var recentContainer = $("#recent");
 var inputValue = $("#inputValue");
 var clear = $("#clearHistory");
+
+renderRecent();
+
+function renderRecent() {
+    recentContainer.empty();
+
+
+for (let i = 0; i < recentSearch.length; i++) {
+    var recentInput = $("<input>");
+    recentInput.attr("type, text");
+    recentInput.attr("readonly", true);
+    recentInput.attr("class", "form-control-lg text-black");
+    recentInput.attr("value", recentSearch[i]);
+    recentInput.on("click", function()
+    {
+        getWeather($(this).atrr("value"));
+    });
+    recentContainer.append(recentInput);
+    }
+}
