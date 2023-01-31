@@ -31,3 +31,17 @@ for (let i = 0; i < recentSearch.length; i++) {
     recentContainer.append(recentInput);
     }
 }
+
+var searchSubmit = function (event) {
+    event.preventDefault;
+
+    var city = searchInput.value.trim();
+
+    if (city) {
+        getCityWeather(city);
+
+        searchInput.value="";
+    } else if (userInput == "") {
+        alert("Please enter city");
+    }
+};
