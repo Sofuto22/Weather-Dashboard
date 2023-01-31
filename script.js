@@ -109,3 +109,31 @@ async function getWeather(city) {
             alert("Enter a city!");
         }
     });
+
+    clear.on("click", function() {
+        localStorage.removeItem("recents");
+        recentSearch.length = 0;
+        renderRecent;
+    });
+
+    async function uvIndex(lat, lon) {
+        var uvUrl = 
+        "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+        lat +
+        "&lon=" +
+        lon +
+        "&units=imperial&appid=9795009f60d5d1c3afe4e6df6002c319";
+      var response = await fetch(uvUrl);
+
+      if (response.ok) {
+        console.log(response);
+        var data = await response.json();
+        console.log(data);
+        var uviValue = data.current.uvi;
+        var fiveDayData = data.daily;
+        console.log(fiveDayData);
+        var uviLine = document.querySelector(".uviValue")
+        uviLine.textContent = uviValue;  
+    }
+
+    }
