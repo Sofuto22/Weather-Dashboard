@@ -52,29 +52,41 @@ async function getWeather(city) {
     city +
     "&units=imperial&appid=fc300879c67e261854f3d0a54db41390";
 
-    var respone = await fetch(apiUrl);
-    if (respone.ok) {
-        var data = await respone.json();
-        var nameValue = data.name;
-        var tempValue = data.main.temp;
-        var humidityValue = data.main.humidity;
-        var windValue = data.wind.speed;
-        console.log(data);
-        var lat = data.coord.lon;
-        var lon = data.coord.lat;
-        await uvIndex(data.coord.lat, data.coord.lon);
-        var icon = data.weather[0].icon;
-        var weatherUrl = `https://openweathermap.org/img/wn/${icon}.png`;
-        var icon = `<img src="${weatherURL}"/>`;
+    var response = await fetch(apiUrl);
+    if (response.ok) {
+      var data = await response.json();
+      var nameValue = data.name;
+      var tempValue = data.main.temp;
+      var humidityValue = data.main.humidity;
+      var windValue = data.wind.speed;
+      console.log(data);
+      var lat = data.coord.lon;
+      var lon = data.coord.lat;
+      await uvIndex(data.coord.lat, data.coord.lon);
+      var icon = data.weather[0].icon;
+      
+      var weatherURL = `https://openweathermap.org/img/wn/${icon}.png`;
+      var icon = `<img src="${weatherURL}"/>`;
+  
+      cityDateIcon.innerHTML =
+        nameValue + currentDate.format(" (M/DD/YYYY) ") + icon;
+      temp.innerHTML = "Temperature: " + tempValue + " °F";
+      humidity.innerHTML = "Humidity: " + humidityValue + "%";
+      wind.innerHTML = "Wind Speed: " + windValue + " MPH";
+        topContainer.classList.remove("hide");
+      console.log(icon);
 
-        cityDateIcon.innerHTML =
-        nameValue = currentDate.format("MM/DD/YYYY") + icon;
-        temp.innerHTML = "Temperature: " + tempValue + " °F";
-        humidity.innerHTML = "Humidity: " + humidityValue + " %";
-        wind.innerHTML = "Wind Speed: " + windValue + " MPH";
-            topContainer.classList.remove("hide");
-            console.log(icon);
+      let newWeatherItem = city;
+      const newSearches = recentSearche.filter((search) => {
+          if (search.city === newWeatherItem.city) {
+              return false;
+          } else {
+              return true;
+          }
+      }
+      );
 
-        
+    } else {
+      alert("Error: " + response.statusText);
     }
-}
+  };
