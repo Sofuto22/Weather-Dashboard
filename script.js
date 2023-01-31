@@ -136,4 +136,33 @@ async function getWeather(city) {
         uviLine.textContent = uviValue;  
     }
 
+    var cardString = "";
+    var fiveDayHeader = document.querySelector(".five-day-forecast");
+    var forecastHeader = document.querySelector(".fiveDayHeader");
+    forecastHeader.textContent="5-Day Forecast:";
+    fiveDayHeader.prepend(forecastHeader);
+    for (var i = 0; i < fiveDayData.length; i++) {
+      if (i >= 5) break;
+      var cardData = fiveDayData[i];
+      var cardTemp = cardData.temp.day;
+      var cardHumidity = cardData.humidity;
+      var iconImage = cardData.weather[0].icon;
+      var weatherURL = `https://openweathermap.org/img/wn/${iconImage}.png`;
+      var icon = `<img src="${weatherURL}" style="width: 75px"/>`;
+      cardString += `
+            <div class="card fiveDayCard" style="flex: 1">
+                <h4 class="dateHeader">${moment(new Date(cardData.dt * 1000)).format(
+                  " M/DD/YYYY"
+                )}</h4>
+                    ${icon}
+                <p>Temp: ${cardTemp}&deg;F</p>
+                <p>Humidity: ${cardHumidity}%</p>
+            </div>
+        `
     }
+    console.log(cardString);
+    var fiveDayCardContainer = document.querySelector("#cards");
+    fiveDayCardContainer.innerHTML = cardString;
+  }
+
+    
