@@ -77,7 +77,7 @@ async function getWeather(city) {
       console.log(icon);
 
       let newWeatherItem = city;
-      const newSearches = recentSearche.filter((search) => {
+      const newSearch = recentSearch.filter((search) => {
           if (search.city === newWeatherItem.city) {
               return false;
           } else {
@@ -90,3 +90,22 @@ async function getWeather(city) {
       alert("Error: " + response.statusText);
     }
   };
+
+    function setLocalStorage(city) {
+        if(recentSearch.index(city) === -1) {
+            recentSearch.push(city);
+            localStorage.setItem("recents", JSON.stringify(recentSearch));
+        }
+    }
+
+    searchBtn.addEventListener("click", ()=> {
+        var userInput = inputValue.val().trim();
+        if (userInput !== "") {
+            getWeather(searchInput.value);
+            setLocalStorage(searchInput.value);
+        renderRecent();
+            inputValue.val("");
+        } else if (userInput == "") {
+            alert("Enter a city!");
+        }
+    });
