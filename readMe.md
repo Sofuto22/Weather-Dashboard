@@ -11,7 +11,7 @@ N/A
 ## Usage
 
 ![Screenshot](assets/screenshot.png)
-[Link to the Weather Dashboard]()
+[Link to the Weather Dashboard](https://sofuto22.github.io/Weather-Dashboard/)
 
 ## Credits
 
